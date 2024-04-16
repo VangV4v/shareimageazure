@@ -44,7 +44,7 @@ public class SecurityConfiguation {
         http.csrf(csrf -> csrf.disable());
         http.authorizeHttpRequests(auth -> {
             auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/auth/**")).permitAll()
-                    .requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/test-1")).permitAll()
+                    .requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/test-2")).permitAll()
                     .requestMatchers(AntPathRequestMatcher.antMatcher("/api-docs")).permitAll()
                     .requestMatchers(AntPathRequestMatcher.antMatcher("/swagger-ui/**")).permitAll()
                     .anyRequest().authenticated();
