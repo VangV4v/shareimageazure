@@ -10,6 +10,7 @@ public interface ImageService {
 
     public ResponseEntity<List<ImageModel>> viewAll();
 
+    public ResponseEntity<List<ImageModel>> getMyImages();
     public ResponseEntity<ImageModel> viewDetail(long id);
     public ResponseEntity<String> uploadImage(MultipartFile image);
 

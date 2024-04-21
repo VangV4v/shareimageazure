@@ -5,6 +5,7 @@ import com.vang.shareimageazure.auth.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -45,6 +46,8 @@ public class SecurityConfiguation {
         http.authorizeHttpRequests(auth -> {
             auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/auth/**")).permitAll()
                     .requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/test-2")).permitAll()
+                    .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST,"/api/v1/users/")).permitAll()
+                    .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST,"/api/v1/reset-password/**")).permitAll()
                     .requestMatchers(AntPathRequestMatcher.antMatcher("/api-docs")).permitAll()
                     .requestMatchers(AntPathRequestMatcher.antMatcher("/swagger-ui/**")).permitAll()
                     .anyRequest().authenticated();

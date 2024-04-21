@@ -2,7 +2,7 @@ package com.vang.shareimageazure.service.impl;
 
 import org.modelmapper.ModelMapper;
 import com.azure.storage.blob.BlobClient;
-import com.vang.shareimageazure.configuation.AzureConfiguation;
+import com.vang.shareimageazure.beanconfig.AzureConfiguation;
 import com.vang.shareimageazure.constant.Common;
 import com.vang.shareimageazure.data.Images;
 import com.vang.shareimageazure.data.ImagesRepository;
@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +52,21 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
+    public ResponseEntity<List<ImageModel>> getMyImages() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        long userId = usersRepository.getUserIdByUsername(username);
+        List<Images> listImages = imagesRepository.findAllByUserId(userId);
+        List<ImageModel> listModel = new ArrayList<>();
+        listImages.forEach(e -> {
+            ImageModel model = new ImageModel();
+            BeanUtils.copyProperties(e, model);
+            model.setUserid(null);
+            listModel.add(model);
+        });
+        return new ResponseEntity<>(listModel, HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<List<ImageModel>> viewAll() {
 
         ModelMapper mapper = new ModelMapper();
@@ -76,6 +92,7 @@ public class ImageServiceImpl implements ImageService {
         model.setUserid(users);
         model.setStatus(Common.NumberCommon.ONE);
         model.setImagename(imageName);
+        model.setCreateddate(LocalDateTime.now());
         try {
             blobClient.upload(image.getInputStream(), image.getSize(), true);
             model.setImageurl(blobClient.getBlobUrl());

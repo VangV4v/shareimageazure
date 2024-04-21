@@ -28,6 +28,12 @@ public class ImageController {
         return imageService.viewAll();
     }
 
+    @GetMapping("/storage/")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<List<ImageModel>> getMyImage() {
+        return imageService.getMyImages();
+    }
+
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<ImageModel> viewDetail(@PathVariable("id") long id) {

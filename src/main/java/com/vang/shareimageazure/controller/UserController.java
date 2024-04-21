@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/users/")
-@PreAuthorize("hasRole('ROLE_ADMIN')")
+@CrossOrigin("*")
 public class UserController {
 
     private final UserService userService;
@@ -22,6 +22,7 @@ public class UserController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<UserModel>> getAlls() {
         return userService.getAll();
     }
@@ -37,7 +38,9 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> deleteUser(@PathVariable("id") long id) {
         return userService.deleteUser(id);
     }
+
 }

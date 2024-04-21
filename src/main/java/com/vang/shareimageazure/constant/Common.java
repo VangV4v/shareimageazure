@@ -22,6 +22,8 @@ public class Common {
 
         public static final int ZERO = 0;
        public static final int ONE = 1;
+       public static final int TWO = 2;
+       public static final int THREE = 3;
         public static final int SEVEN = 7;
    }
 
@@ -31,6 +33,11 @@ public class Common {
        public static final String EMAIL_EXIST = "Email is exist";
 
        public static final String DELETE_USER_SUCCESS = "Delete User success";
+
+       public static final String VERIFY_001 = "Code has expiration";
+
+       public static final String VERIFY_002 = "Code is wrong";
+       public static final String VERIFY_003 = "Verify success";
    }
 
 }

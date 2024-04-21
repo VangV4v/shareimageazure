@@ -7,12 +7,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
-public class ImageModel implements Serializable {
+public class ResetPasswordRequestModel implements Serializable {
 
-    private long imageid;
-    private String imagename;
-    private String imageurl;
-    private int status;
+    private int id;
+    private String email;
+    private String code;
     private LocalDateTime createddate;
-    private Users userid;
+    private int status;
 }

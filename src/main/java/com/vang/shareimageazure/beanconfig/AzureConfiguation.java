@@ -1,4 +1,4 @@
-package com.vang.shareimageazure.configuation;
+package com.vang.shareimageazure.beanconfig;
 
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobServiceClient;

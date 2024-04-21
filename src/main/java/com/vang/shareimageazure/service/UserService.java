@@ -1,7 +1,6 @@
 package com.vang.shareimageazure.service;
 
-import com.vang.shareimageazure.model.ResponseCommonModel;
-import com.vang.shareimageazure.model.UserModel;
+import com.vang.shareimageazure.model.*;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -14,4 +13,10 @@ public interface UserService {
     ResponseEntity<UserModel> editUser(UserModel model);
 
     ResponseEntity<String> deleteUser(long id);
+
+    ResponseEntity<String> resetPassword(String email);
+
+    ResponseEntity<VerifyCodeResponseModel> verifyCode(VerifyCodeModel model);
+
+    ResponseEntity<Boolean> updatePassword(UpdatePasswordRequestModel model);
 }
