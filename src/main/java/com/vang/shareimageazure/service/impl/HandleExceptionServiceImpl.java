@@ -1,5 +1,6 @@
 package com.vang.shareimageazure.service.impl;
 
+import com.vang.shareimageazure.constant.Common;
 import com.vang.shareimageazure.service.HandleExceptionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,6 @@ public class HandleExceptionServiceImpl implements HandleExceptionService {
 
     @Override
     public ResponseEntity<String> accessDeniedHandle(Principal principal) {
-        return new ResponseEntity<>(principal.getName()+" Cannot access", HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(principal.getName()+ Common.MessageCommon.FORBIDDEN, HttpStatus.FORBIDDEN);
     }
 }

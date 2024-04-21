@@ -14,8 +14,21 @@ public class Common {
 
     public static final String AZURE_CONTAINERNAME = "minimicroservice";
 
+    public static final String EMAIL_TEMPLATE = "resetpassword";
+
+    public static final String SUBJECT_EMAIL = "REST_PASSWORD_WANG";
+
     public static class ImageCommon {
         public static final String AVATAR_DEFAULT = "https://minimicroservice.blob.core.windows.net/minimicroservice/defaultavatar.jpg";
+    }
+
+    public static class CharacterSpecial {
+        public static final String CHARACTER_001  = "$";
+    }
+
+    public static class VariableCommon {
+        public static final String VAR_CODE = "code";
+        public static final String VAR_EMAIL = "email";
     }
 
    public static class NumberCommon {
@@ -31,13 +44,15 @@ public class Common {
        public static final String LOGIN_FAIL = "Login fail, please check username or password";
        public static final String USERNAME_EXIST = "Username is exist";
        public static final String EMAIL_EXIST = "Email is exist";
-
        public static final String DELETE_USER_SUCCESS = "Delete User success";
-
        public static final String VERIFY_001 = "Code has expiration";
-
        public static final String VERIFY_002 = "Code is wrong";
        public static final String VERIFY_003 = "Verify success";
+       public static final String USERNAME_NOTFOUND = "Username is not found";
+       public static final String FORBIDDEN = " Cannot access";
+
+       public static final String IMAGE_001 = "update Image success";
+       public static final String IMAGE_002 = "delete Image success";
    }
 
 }

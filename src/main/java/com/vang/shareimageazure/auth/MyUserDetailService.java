@@ -1,5 +1,6 @@
 package com.vang.shareimageazure.auth;
 
+import com.vang.shareimageazure.constant.Common;
 import com.vang.shareimageazure.data.Users;
 import com.vang.shareimageazure.data.UsersRepository;
 import com.vang.shareimageazure.model.UserModel;
@@ -32,7 +33,7 @@ public class MyUserDetailService implements UserDetailsService {
         Users users = repository.getByUsername(username);
         UserModel model = new UserModel();
         if(ObjectUtils.isEmpty(users)) {
-            throw new UsernameNotFoundException("Username is not found");
+            throw new UsernameNotFoundException(Common.MessageCommon.USERNAME_NOTFOUND);
         }
         BeanUtils.copyProperties(users, model);
         List<GrantedAuthority> listGrant = List.of(new SimpleGrantedAuthority(model.getRole()));

@@ -10,21 +10,34 @@ import java.util.Properties;
 @Configuration
 public class MailConfig {
 
+    private static final String HOST = "smtp.gmail.com";
+    private static final int PORT = 587;
+    private static final String USERNAME = "replyminimicroservice@gmail.com";
+    private static final String PASSWORD = "utxz djfo ieya egfu";
+    private static final String KEY_MAIL_PROTOCOL = "mail.transport.protocol";
+    private static final String VALUE_MAIL_PROTOCOL = "smtp";
+    private static final String KEY_MAIL_AUTH = "mail.smtp.auth";
+    private static final String VALUE_MAIL_AUTH = "true";
+    private static final String KEY_MAIL_STARTTLS_ENABLE = "mail.smtp.starttls.enable";
+    private static final String VALUE_MAIL_STARTTLS_ENABLE = "true";
+    private static final String KEY_MAIL_DEBUG = "mail.debug";
+    private static final String VALUE_MAIL_DEBUG = "true";
+
     @Bean
     public JavaMailSender mailSender() {
 
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.gmail.com");
-        mailSender.setPort(587);
+        mailSender.setHost(HOST);
+        mailSender.setPort(PORT);
 
-        mailSender.setUsername("replyminimicroservice@gmail.com");
-        mailSender.setPassword("utxz djfo ieya egfu");
+        mailSender.setUsername(USERNAME);
+        mailSender.setPassword(PASSWORD);
 
         Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.transport.protocol", "smtp");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.debug", "true");
+        props.put(KEY_MAIL_PROTOCOL, VALUE_MAIL_PROTOCOL);
+        props.put(KEY_MAIL_AUTH, VALUE_MAIL_AUTH);
+        props.put(KEY_MAIL_STARTTLS_ENABLE, VALUE_MAIL_STARTTLS_ENABLE);
+        props.put(KEY_MAIL_DEBUG, VALUE_MAIL_DEBUG);
         return mailSender;
     }
 }

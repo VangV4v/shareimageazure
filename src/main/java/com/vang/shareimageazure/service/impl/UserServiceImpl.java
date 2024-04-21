@@ -13,8 +13,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -190,11 +188,11 @@ public class UserServiceImpl implements UserService {
         String code = generateCode();
         if(countCheckEmail > Common.NumberCommon.ZERO) {
             try {
-                context.setVariable("code", code);
-                context.setVariable("email",email);
-                String body = templateEngine.process("resetpassword",context);
+                context.setVariable(Common.VariableCommon.VAR_CODE, code);
+                context.setVariable(Common.VariableCommon.VAR_EMAIL,email);
+                String body = templateEngine.process(Common.EMAIL_TEMPLATE,context);
                 message.setTo(email);
-                message.setSubject("REST_PASSWORD_WANG");
+                message.setSubject(Common.SUBJECT_EMAIL);
                 message.setText(body, true);
                 mailSender.send(mimeMessage);
                 saveData(code, email);
@@ -221,14 +219,14 @@ public class UserServiceImpl implements UserService {
     private boolean checkPassword(String password) {
 
         //this function uses check if u enter new password then return true, because when u add or edit, i create pattern u cannot enter '$'
-        return password.contains("$") && countOfCharacter(password) > Common.NumberCommon.TWO;
+        return password.contains(Common.CharacterSpecial.CHARACTER_001) && countOfCharacter(password) > Common.NumberCommon.TWO;
     }
 
     private int countOfCharacter(String str) {
         int count = 0;
         String[] arrStr = str.split("");
         for (String elm : arrStr) {
-            if(elm.equals("$")) {
+            if(elm.equals(Common.CharacterSpecial.CHARACTER_001)) {
                 count++;
             }
         }

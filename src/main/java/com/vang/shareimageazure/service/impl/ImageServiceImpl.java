@@ -113,7 +113,7 @@ public class ImageServiceImpl implements ImageService {
         model.setStatus(status);
         BeanUtils.copyProperties(model, images);
         imagesRepository.save(images);
-        return new ResponseEntity<>("update Image success", HttpStatus.OK);
+        return new ResponseEntity<>(Common.MessageCommon.IMAGE_001, HttpStatus.OK);
     }
 
     @Override
@@ -122,7 +122,7 @@ public class ImageServiceImpl implements ImageService {
         BlobClient blobClient = azureConfiguation.containerClient().getBlobClient(model.getImagename());
         blobClient.delete();
         imagesRepository.deleteById(model.getImageid());
-        return new ResponseEntity<>("delete Image success", HttpStatus.OK);
+        return new ResponseEntity<>(Common.MessageCommon.IMAGE_002, HttpStatus.OK);
     }
 
 }
